@@ -1,3 +1,6 @@
+# CSS Variables 
+Practice using css variables with Javascript
+
 # TIL:
 
 ##### 1.  Query selectors return a Node list, which has only a couple of methods.
