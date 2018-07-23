@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5 Canvas</title>
+</head>
+
+<body>
+    <canvas class="draw" width="800" height="800"></canvas>
+    <script>
+        const canvas = document.querySelector('.draw');
+        const ctx = canvas.getContext('2d');
+
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // set the base color 
+        ctx.strokeStyle = 'FF0000';
+        // need end of line to be rounded and when a line meets a line
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.lineWidth = 100;
+        ctx.globalCompositeOperation = 'multiply';
+
+        // create a flag var: when click down, it's true, and when click up, set it to false
+        let isDrawing = false;
+        // line needs a place to end (can't just put coordinates)
+        let lastX = 0;
+        let lastY = 0;
+        let hue = 0; // starting color is red
+        let direction = true;
+
+        // called when move mouse on canvas
+        function draw(e) {
+            if (!isDrawing) return; // stops func. from running when not moused down 
+            ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+
+            // creates a new path 
+            ctx.beginPath();
+            //start from:
+            ctx.moveTo(lastX, lastY);
+            // below values come from actual event/movement from user's mouse
+            // go to:
+            ctx.lineTo(e.offsetX, e.offsetY);
+            // stroke draws path defined by moveTo() and lineTo
+            ctx.stroke();
+            // below is destructuring an array
+            [lastX, lastY] = [e.offsetX, e.offsetY]; // faster way of declaring both variables by the event's properties
+            hue++; // changes the color
+
+            if (hue >= 360) {
+                hue = 0;
+            }
+
+            // below changes direction of line width 
+            if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+                direction = !direction;
+            }
+
+            if (direction) {
+                ctx.lineWidth++;
+            } else {
+                ctx.lineWidth--;
+            }
+        }
+
+        // starts drawing where user first mousedown on page
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            [lastX, lastY] = [e.offsetX, e.offsetY];
+        });
+
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseout', () => isDrawing = false);
+
+
+    </script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+    </style>
+
+</body>
+
+</html>
