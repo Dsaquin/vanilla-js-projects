@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Key Detection</title>
+    <script type="text/javascript" src="http://www.cornify.com/js/cornify.js"></script>
+</head>
+
+<body>
+    <script>
+        const pressed = [];
+        const secretCode = 'dawnsaq';
+        window.addEventListener('keyup', (e) => {
+            pressed.push(e.key);
+            // set the array length based on secretCode
+            pressed.splice(-secretCode.length - 1, pressed.length - secretCode.length);
+
+            // turns array into a string
+            if (pressed.join('').includes(secretCode)) {
+                // if string is same as secret code, a unicorn pops up
+                cornify_add();
+            };
+            console.log(pressed);
+        });
+    </script>
+</body>
+
+</html>
