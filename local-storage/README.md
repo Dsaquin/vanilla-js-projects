@@ -1,4 +1,4 @@
-# # Utilizing browser's Local Storage and working with Event Delegation
+## Utilizing browser's Local Storage and working with Event Delegation
 
 # TIL:
 
