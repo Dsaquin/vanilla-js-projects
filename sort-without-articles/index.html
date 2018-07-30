@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sort Without Articles</title>
+</head>
+
+<body>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background: url("https://source.unsplash.com/nDqA4d5NL0k/2000x2000");
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #bands {
+            display: flex;
+            list-style: inside square;
+            font-size: 20px;
+            background-color: hsl(129, 35%, 50%);
+            opacity: .6;
+            width: 300px;
+            margin: auto;
+            padding: 0;
+            box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
+            flex-direction: column;
+        }
+
+        #bands li {
+            font-weight: bold;
+            padding: 5px;
+            justify-content: flex-start;
+        }
+
+        #bands li:last-child {
+            border-bottom: 0;
+        }
+    </style>
+
+    <ul id="bands"></ul>
+
+    <script>
+        const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
+
+        function strip(bandName) {
+            return bandName.replace(/^(a |the |an )/i, '').trim(); // use reg exp to replace all 3 articles w/ nothing..i = insensitive..trim() incase for spaces after articles
+        }
+
+        const sortedBands = bands.sort((a, b) => strip(a) > strip(b) ? 1 : -1); // faster way 
+        // if(strip(a) > strip(b)) {
+        //   return 1;
+        // } else {
+        //   return -1;
+        // }
+
+        document.querySelector("#bands").innerHTML =
+            sortedBands
+                .map(band => `<li>${band}</li>`) // return the band names to the ul on page
+                .join(''); // returns an array, so join it to avoid this
+        // console.log(sortedBands);
+
+
+    </script>
+
+</body>
+
+</html>
