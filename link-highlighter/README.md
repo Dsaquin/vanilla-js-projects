@@ -2,7 +2,7 @@
 
 # TIL:
 
-#### 1. Element.getBoudningClientRect()
+#### 1. Element.getBoundingClientRect()
 
 - It's a method that returns the dimensions of an element and its position relative to the viewport.
 - window.scrollY and window.scrollX are added to the elements dimensions to ignore the scrolling position (since values are relative to viewport and not absolute)
