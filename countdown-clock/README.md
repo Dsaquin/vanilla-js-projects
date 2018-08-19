@@ -1,7 +1,7 @@
 ## Created a countdown clock that adjusts to users time preference
 
-User adjusts time countdown to fit their needs
-More practice with getHours() and getMinutes() methods according to current time.
+* User adjusts time countdown to fit their needs.
+* More practice with getHours() and getMinutes() methods according to current time.
 
 # TIL:
 
